@@ -1,0 +1,57 @@
+﻿@model Mvcproje.Models.Yorum
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Sil</h2>
+
+<h3>Silmeyi onaylıyor musunuz?</h3>
+<div>
+    <h4>Yorum</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Makale.baslik)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Makale.baslik)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Uye.kullaniciadi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Uye.kullaniciadi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.icerik)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.icerik)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tarih)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tarih)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Sil" class="btn btn-primary" /> |
+            @Html.ActionLink("Geri Dön", "Index")
+        </div>
+    }
+</div>

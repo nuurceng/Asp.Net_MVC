@@ -1,0 +1,61 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<Mvcproje.Models.Makale>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>Index</h2>*@
+
+<h1 class="my-4">
+    <small></small>
+</h1>
+<!-- Blog Post -->
+<div class="card mb-4" style="width: 40rem;">
+    @foreach (var item in Model)
+    {
+        <h4><a href="/Home/MakaleDetay/@item.makaleid">@item.baslik</a></h4>
+        <span><img class="card-img-top"  height="250"   src="@Url.Content(String.Format(item.makaleresim))" alt="Card image cap"></span>
+    <div class="card-body">
+        <h2 class="card-title"></h2>
+        
+        <p class="card-text">
+            @if(@item.icerik.Length>120)
+            {
+
+                <p>@Html.Raw(item.icerik.Substring(0,120))...</p>
+            }
+            else
+            {
+                <p>@Html.Raw(item.icerik)...</p>
+            }
+       
+        </p>
+        
+
+
+        <a href="/Home/MakaleDetay/@item.makaleid" class="btn btn-primary">Devamı &rarr;</a>
+    </div>
+    <div class="card-footer text-muted">
+       
+        @*Yazar  @item.Uye.kullaniciadi*@ @*<a href="/Uye/Index/@item.Uye.uyeid">@item.Uye.kullaniciadi </a>*@
+           
+                 @String.Format("{0:d MMMM yyyy}",item.tarih) | Etikets
+        
+        <span class="glyphicon glyphicon-tags">(@item.Etikets.Count())</span> 
+       
+    </div>
+
+    }
+    <div class="row">
+        <div class="col-md-8 text-center">
+            <div class="pagedList pagination">
+                @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page }), PagedListRenderOptions.Classic)
+            </div>
+        </div>
+    </div>
+</div>
+
+

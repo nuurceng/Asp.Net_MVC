@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Mvcproje.Models.Yorum>
+    @{ 
+        Layout = null;
+    }
+
+<h5 class="card-header">Son Yapılan Yorumlar</h5>
+<div class="card-body">
+    <div class="col-lg-12">
+        <ul>
+            @foreach(var item in Model)
+            {
+                <li>@item.icerik-<a href="/Home/MakaleDetay/@item.makaleid">@item.Makale.baslik</a></li>
+               
+            }
+        </ul>
+
+    </div>
+
+
+</div>
